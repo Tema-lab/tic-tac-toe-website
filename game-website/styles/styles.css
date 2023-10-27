@@ -94,8 +94,14 @@ a{
 
 
 /* about page */
-.about-wrapper{
+.about-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 9em;
+}
+.about-wrapper{
+
     padding: 20px 30px 40px 25px;
     background-color: #FFFF;
     border-radius: 15px;
@@ -107,10 +113,9 @@ a{
 .about-text{
     line-height: 2em;
 }
-.about-img-container{
-    position: absolute;
-    right: 0;
-    bottom: -300px;
+.about-img{
+    min-width: 400px;
+    max-height: 300px;
 }
 
 /*login and register  page*/
