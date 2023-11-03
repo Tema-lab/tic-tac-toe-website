@@ -1,15 +1,18 @@
+/*sort of normalize.css - will reset some margins, paddings for every tag*/
 *,*::after, *::before{
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
-
 }
+/*removing list style for all unordered lists*/
 ul{
     list-style: none;
 }
+/*removing default color with underline for an anchor link*/
 a{
     text-decoration: none;
 }
+/*container that is used to move elements to the middle of the page + sets width of 1440px*/
 .container{
     width: 1440px;
     position: relative;
@@ -18,7 +21,6 @@ a{
 }
 
 /* header section */
-
 .logo{
     color: rgb(255,255,255);
     display: inline-block;
@@ -27,15 +29,15 @@ a{
 .page__body{
     background-color: lightgray;
 }
-
 .page__header{
     max-width: 100%;
+    background-color: rgba(0,0,0,0.3);
 }
 .page__nav{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    padding: 20px 0 20px;
 }
 .nav__container{
     width: 1200px;
@@ -43,17 +45,15 @@ a{
     align-items: center;  
     justify-content: space-evenly;
     flex-wrap: wrap;
-
-
 }
 .nav__container > li > a{
     color: #000;
     font-size: 25px;
     text-decoration: none;
-    padding: 2em;
+    margin: 2em;
 }
 .nav__container > li > a:hover{
-    color: rgba(170, 165, 121, 0.938);
+    color: #9fd3c7;
     transition: 0.2s linear;
 }
 
@@ -67,7 +67,7 @@ a{
 }
 .main-title{
     text-transform: uppercase;
-    
+    font-size: 42px;
 }
 .play-btn{
     font-size: 38px;
@@ -79,8 +79,8 @@ a{
 }
 .play-btn::after{
     content: '';
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     position: absolute;
     border-style: solid;
     border-width: 8.5px 0 8.5px 14.7px;
@@ -91,8 +91,6 @@ a{
     top: 12px;
 }
 
-
-
 /* about page */
 .about-section{
     display: flex;
@@ -101,7 +99,6 @@ a{
     margin-top: 9em;
 }
 .about-wrapper{
-
     padding: 20px 30px 40px 25px;
     background-color: #FFFF;
     border-radius: 15px;
@@ -109,13 +106,14 @@ a{
 }
 .about-title{
     padding-bottom: 10px;
+    border-bottom: 1px solid #9fd3c7;
 }
 .about-text{
     line-height: 2em;
 }
 .about-img{
     min-width: 400px;
-    max-height: 300px;
+    max-height: 355px;
 }
 
 /*login and register  page*/
@@ -134,7 +132,7 @@ a{
     max-width: 581px;
 }
 .login-section{
-    margin-top: 10em;
+    margin-top: 6em;
     background-color: #FFFF;
     border-radius: 30px;
     max-width: 500px;
@@ -165,4 +163,39 @@ a{
 }
 .form-logo{
     margin-bottom: 30px;
+}
+
+/*score board page*/
+.scoreboard-main{
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+.scoreboard-table{
+    border-collapse: collapse;
+    margin: 25px;
+    min-width: 700px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,.15);
+}
+.scoreboard-table thead tr{
+    background-color: #9fd3c7;
+    color: #000000;
+    text-align: left;
+    font-weight: 700;
+}
+.scoreboard-table th,
+.scoreboard-table td{
+    padding: 12px 15px;
+}
+.scoreboard-table tbody tr{
+    border-bottom: 1px solid #000000;
+    background-color: lightgray;
+}
+.scoreboard-table tbody tr:nth-of-type(even){
+   background-color: #FFFFFF;
+}
+.scoreboard-table tbody tr:last-of-type{
+    border-bottom: 2px solid #9fd3c7;
 }
