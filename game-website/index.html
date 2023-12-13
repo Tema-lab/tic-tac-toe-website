@@ -34,28 +34,33 @@
                 <button class="play-btn" id="play-btn">Play</button>
             </div>
         </div>
+    </section>
+    <div class="playground-section">
         <div class="switches hide" id="switches">
-            <button class="player-switch player1">Player X</button>
-            <button class="player-switch player2">Player 0</button>
+            <div class="switches-content">
+                <button class="player-switch player1">Player X</button>
+                <button class="player-switch player2">Player 0</button>
+                <div class="slider" id="slider"></div>
+            </div>
         </div>
-        <div id="playground" class="playground">
+        <div id="playground" class="playground hide">
             <div class="top">
-                <span class="box1"></span>
-                <span class="box2"></span>
-                <span class="box3"></span>
+                <span class="cell">0</span>
+                <span class="cell">1</span>
+                <span class="cell">2</span>
             </div>
             <div class="middle">
-                <span class="box4"></span>
-                <span class="box5"></span>
-                <span class="box6"></span>
+                <span class="cell">3</span>
+                <span class="cell">4</span>
+                <span class="cell">5</span>
             </div>
             <div class="bottom">
-                <span class="box7"></span>
-                <span class="box8"></span>
-                <span class="box9"></span>
+                <span class="cell">6</span>
+                <span class="cell">7</span>
+                <span class="cell">8</span>
             </div>
         </div>
-    </section>
+    </div>
 
 </main>
 </body>

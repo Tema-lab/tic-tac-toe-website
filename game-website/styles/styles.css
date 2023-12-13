@@ -203,42 +203,74 @@ a{
 .scoreboard-table tbody tr:last-of-type{
     border-bottom: 2px solid #9fd3c7;
 }
-
-.switches{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 10%;
-}
-.player-switch{
-    width: 100px;
-    padding: 10px;
-    margin-left: 10px;
-    border: 1px solid #9fd3c7;
-    cursor: pointer;
-}
 /*JS classes*/
 
 /*cell styles*/
 .cell{
-    width: 100px;
-    height: 100px;
-    background-color: #FFFFFF;
-    border: 1px solid #000000;
+    display: flex;
+    justify-content: center;
+    height: 90px;
+    width: 90px;
+    color: #56baed;
+    font-size: 40px;
+    margin: 10px;
+    line-height: 80px;
+    border-radius: 5px;
+    background: #FFFFFF;
 }
 
 /*playground styles*/
-.playground{
-    width: 300px;
-    display: grid;
-    grid-template-rows: repeat(3, 100px);
-    grid-template-columns: repeat(3,100px);
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 100px;
+.playground-section{
+    position: absolute;
+    top: 28%;
+    left: 41%;
 }
+.switches{
+    padding: 7px;
+    border-radius: 5px;
+    background: #fff;
+}
+.playground-section .switches-content{
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+}
+.player-switch{
+    border: transparent;
+    background-color: transparent;
+    position: relative;
+    z-index: 2;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+.switches .slider{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: #9fd3c7;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+.slider.active{
+    left: 50%;
+}
+
+.playground div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*helper classes*/
 .hide{
     display: none;
 }
