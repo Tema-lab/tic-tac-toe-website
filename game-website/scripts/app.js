@@ -11,7 +11,7 @@ const drawScoreEl = document.getElementById("draw-score");
 const circleScoreEl = document.getElementById("circle-score");
 const crossScoreEl = document.getElementById("cross-score");
 const gamesPlayedEl = document.getElementById("total-games");
-const maxScore = 2;
+const maxScore = 5;
 let currTurn = "X";
 let winningSets = [
     [0,1,2],
@@ -61,7 +61,7 @@ const checkForWin = () =>{
             if(cellA === cellB && cellB === cellC){
                 winnerFuncHandler(cellA);
                 disableBtns();
-                gameWinHandler();
+                addScoresToLocalStorage();
                 countTotalGamesPlayer();
                 hasWon = true;
             }
@@ -70,7 +70,6 @@ const checkForWin = () =>{
 }
 const checkForDraw = () =>{
     let isDraw = false;
-    console.log(countTurns);
     cells.forEach(cell=>{
        if(cell.innerText !== "" && !hasWon && countTurns === 9){
            console.log("draw");
@@ -142,8 +141,7 @@ function setProfileName(){
         userProfile.innerHTML = JSON.parse(sessionStorage.getItem("loggedUser"));
     }
 }
-function addScoresToLocalStorage(){
-    let updatedUser;
+function addScoresToLocalStorage() {
     let users = JSON.parse(localStorage.getItem("users")) || [];
     let scores = {
         crossesScore: xScore,
@@ -151,21 +149,31 @@ function addScoresToLocalStorage(){
         drawsScore: drawScore,
         totalGamesPlayed: gamesPlayed
     };
-    users.forEach(user=>{
-        updatedUser = [{...user, ...scores}];
-    });
-    users.push(updatedUser);
-    localStorage.setItem("users", JSON.stringify(updatedUser));
-}
-const gameWinHandler = () =>{
-    if(xScore === maxScore){
-        console.log("Game has finished. Crosses Won!!!");
-        addScoresToLocalStorage();
-    }else if(oScore === maxScore){
-        console.log("Game has finished. Circles Won!!!");
-        addScoresToLocalStorage();
+    let currUserId = JSON.parse(sessionStorage.getItem("loggedUserId"));
+    // Check if the current user is already in the array
+    let currentUserIndex = users.findIndex(user => user.id === currUserId);
+
+    if (currentUserIndex !== -1) {
+        // If the user is found, update the scores
+        users[currentUserIndex] = { ...users[currentUserIndex], ...scores };
+    } else {
+        // If the user is not found, add the new user to the array
+        let newUser = {
+            id: currUserId, // Replace with the actual identifier for the user
+            ...scores
+        };
+        users.push(newUser);
     }
+    localStorage.setItem("users", JSON.stringify(users));
 }
+// const gameWinHandler = () =>{
+//     if(xScore === maxScore){
+//         addScoresToLocalStorage();
+//     }
+//     if(oScore === maxScore){
+//         addScoresToLocalStorage();
+//     }
+// }
 window.onload = function (){
     setProfileName();
 }

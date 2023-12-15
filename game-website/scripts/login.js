@@ -11,8 +11,13 @@ function loginUser(){
         userName: userNameEl.value,
         password: userPasswordEl.value
     };
+    let currentUser = usersRegistered.find(user => user.userName === formData.userName);
+    if(currentUser){
+        sessionStorage.setItem("loggedUserId", JSON.stringify(currentUser.id));
+    }
     if(usersRegistered.some(user => user.userName === formData.userName && user.password === formData.password)) {
         sessionStorage.setItem("loggedUser", JSON.stringify(formData.userName));
+
         loginErrorEl.innerHTML = "";
         userProfile.innerHTML = JSON.parse(sessionStorage.getItem("loggedUser"));
         window.location.href = "../index.html";

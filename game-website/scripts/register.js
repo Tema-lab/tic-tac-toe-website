@@ -73,6 +73,7 @@ const validateInputs = () =>{
         email: userEmailValue,
         password: userPassValue,
         userName: userNameValue,
+        id: Math.floor(Math.random() * 100)
     }
     return status;
 }
