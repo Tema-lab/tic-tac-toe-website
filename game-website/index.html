@@ -23,6 +23,7 @@
             <li><a class="nav-link" href="./pages/Register.html">Register</a></li>
             <li><a class="nav-link" href="./pages/Scoreboard.html">Scoreboard</a></li>
         </ul>
+        <span class="user-profile">User: <a id="user-profile"> Anonymous</a></span>
     </nav>
 </header>
 <!--Main section / Playground -->
@@ -38,30 +39,45 @@
     <div class="playground-section">
         <div class="switches hide" id="switches">
             <div class="switches-content">
-                <button class="player-switch player1">Player X</button>
-                <button class="player-switch player2">Player 0</button>
+                <span class="player-switch player1">Player X</span>
+                <span class="player-switch player2">Player 0</span>
                 <div class="slider" id="slider"></div>
             </div>
         </div>
         <div id="playground" class="playground hide">
-            <div class="top">
-                <span class="cell">0</span>
-                <span class="cell">1</span>
-                <span class="cell">2</span>
+            <div class="cell-container">
+                <button class="cell"></button>
+                <button class="cell"></button>
+                <button class="cell"></button>
             </div>
-            <div class="middle">
-                <span class="cell">3</span>
-                <span class="cell">4</span>
-                <span class="cell">5</span>
+            <div class="cell-container">
+                <button class="cell"></button>
+                <button class="cell"></button>
+                <button class="cell"></button>
             </div>
-            <div class="bottom">
-                <span class="cell">6</span>
-                <span class="cell">7</span>
-                <span class="cell">8</span>
+            <div class="cell-container">
+                <button class="cell"></button>
+                <button class="cell"></button>
+                <button class="cell"></button>
             </div>
+            <button class="restart-game-btn" id="restart-btn">Restart Game</button>
+
+            <section class="score-section">
+                <div class="score">
+                    <div class="cross-score">Crosses: <span id="cross-score">0</span></div>
+                </div>
+                <div class="score">
+                    <div class="circle-score">Circles: <span id="circle-score">0</span></div>
+                </div>
+                <div class="score">
+                    <div class="circle-score">Draws: <span id="draw-score">0</span></div>
+                </div>
+                <div class="score">
+                    <div class="circle-score">Games played: <span id="total-games">0</span></div>
+                </div>
+            </section>
         </div>
     </div>
-
 </main>
 </body>
 </html>

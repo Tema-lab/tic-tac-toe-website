@@ -149,13 +149,13 @@ a{
     flex-direction: column;
     margin: 1px 15px;
 }
-.input-container > input{
+.input-container > .input-control input{
     width: 350px;
     padding: 10px;
     margin: 15px 0;
     background-color: lightgray;
 }
-.input-container > input::placeholder{
+.input-container > .input-control input::placeholder{
     color: #000000;
     font-weight: 700;
 }
@@ -168,7 +168,26 @@ a{
 .form-logo{
     margin-bottom: 30px;
 }
+.input-control.success input{
+    border-color: #09c372;
+}
+.input-control.error input{
+    border-color: #ff3860;
+}
 
+.input-control .error{
+    color: #ff3860;
+    font-size: 9px;
+    height: 13px;
+}
+.email-error{
+    font-size: 15px;
+    color: #ff3860;
+}
+.login-error{
+    font-size: 15px;
+    color: #ff3860;
+}
 /*score board page*/
 .scoreboard-main{
     display: flex;
@@ -203,6 +222,26 @@ a{
 .scoreboard-table tbody tr:last-of-type{
     border-bottom: 2px solid #9fd3c7;
 }
+.user-profile{
+    font-size: 20px;
+}
+
+.score-section{
+    position: absolute;
+    right: -550px;
+    top: 0;
+    width: 400px;
+    height: 100%;
+}
+.score{
+    color: #000000;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #9fd3c7;
+    margin: 10px;
+}
 /*JS classes*/
 
 /*cell styles*/
@@ -211,10 +250,11 @@ a{
     justify-content: center;
     height: 90px;
     width: 90px;
-    color: #56baed;
+    color: #9fd3c7;
     font-size: 40px;
     margin: 10px;
     line-height: 80px;
+    border: transparent;
     border-radius: 5px;
     background: #FFFFFF;
 }
@@ -264,12 +304,35 @@ a{
     left: 50%;
 }
 
-.playground div{
+.playground .cell-container{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.restart-game-btn{
+    display: inline-block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 9px 10px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.restart-game-btn:hover{
+    color: #9fd3c7;
+    border: 1px solid #9fd3c7;
+}
 
+
+.user-sign-out{
+    font-size: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.user-sign-out:hover{
+    color: #9fd3c7;
+}
 /*helper classes*/
 .hide{
     display: none;

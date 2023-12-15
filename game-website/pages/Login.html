@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <script src="../scripts/app.js" defer></script>
+    <script src="../scripts/login.js" defer></script>
     <title>Tic Tac Toe</title>
 </head>
 <body class="page__body">
@@ -22,6 +22,7 @@
                 <li><a href="../pages/Register.html">Register</a></li>
                 <li><a href="../pages/Scoreboard.html">Scoreboard</a></li>
             </ul>
+            <span class="user-profile" >User: <a id="user-profile">Anonymous</a></span>
         </nav>
     </header>
 <!--Login Section-->
@@ -31,12 +32,17 @@
                 <div class="login-wrapper">
                     <h1 class="login-title">Welcome to login page</h1>
                     <div class="input-container">
-                        <input type="text" id="user-name" placeholder="Username:"/>
-                        <label for="user-name"></label>
-                        <input type="password" id="user-password" placeholder="Password:"/>
-                        <label for="user-password"></label>
+                        <div class="input-control">
+                            <input type="text" id="user-name" placeholder="Username:"/>
+                            <label for="user-name"></label>
+                        </div>
+                        <div class="input-control">
+                            <input type="password" id="user-password" placeholder="Password:"/>
+                            <label for="user-password"></label>
+                        </div>
                     </div>
-                    <button class="login-btn">Login</button>
+                    <span class="login-error" id="login-error"></span>
+                    <button type="submit" class="login-btn" id="login-btn">Login</button>
                     <img class="form-logo" src="../imgs/logo.png" alt="" width="42">
                 </div>
             </section>

@@ -1,88 +1,174 @@
-const cells = document.querySelectorAll("div span");
-const singleCells = document.querySelectorAll(".cell");
+//constants
+const cells = document.querySelectorAll(".cell");
 const mainSection = document.getElementById("main-section");
 const playBtn = document.getElementById("play-btn");
 const playGround = document.getElementById("playground");
 const switches = document.getElementById("switches");
 const slider = document.getElementById("slider");
-
+const restartBtn = document.getElementById("restart-btn");
+const userProfile = document.getElementById("user-profile");
+const drawScoreEl = document.getElementById("draw-score");
+const circleScoreEl = document.getElementById("circle-score");
+const crossScoreEl = document.getElementById("cross-score");
+const gamesPlayedEl = document.getElementById("total-games");
+const maxScore = 2;
 let currTurn = "X";
-let isGameOver = false;
 let winningSets = [
     [0,1,2],
-    [0,3,6],
-    [0,4,8],
     [3,4,5],
     [6,7,8],
+    [0,3,6],
+    [0,4,8],
     [1,4,7],
     [2,5,8],
     [2,4,6],
 ];
-let playgroundBoard = ['','','','','','','','',''];
+let xScore = 0;
+let oScore = 0;
+let drawScore = 0;
+let countTurns = 0;
+let hasWon = false;
+let gamesPlayed = 1;
 
-const gameStatus = {
-    playerXWon:"Player X Won",
-    playerYWon:"Player Y Won",
-    tie: "TIE"
+cells.forEach(cell=>{
+    cell.addEventListener("click",()=>{
+        if(currTurn === "X"){
+            countTurns++;
+            cell.innerText = "X";
+            cell.disabled = true;
+            changePlayer();
+            moveSlider();
+        }
+        else{
+            countTurns++;
+            cell.innerText = "O";
+            cell.disabled = true;
+            changePlayer();
+            moveSlider();
+        }
+        checkForWin();
+        checkForDraw();
+    })
+});
+const checkForWin = () =>{
+    winningSets.forEach(set=>{
+        let [cellA, cellB, cellC] = [
+            cells[set[0]].innerHTML,
+            cells[set[1]].innerHTML,
+            cells[set[2]].innerHTML,
+        ];
+        if(cellA !== "" && cellB !== "" && cellC !== ""){
+            if(cellA === cellB && cellB === cellC){
+                winnerFuncHandler(cellA);
+                disableBtns();
+                gameWinHandler();
+                countTotalGamesPlayer();
+                hasWon = true;
+            }
+        }
+    });
+}
+const checkForDraw = () =>{
+    let isDraw = false;
+    console.log(countTurns);
+    cells.forEach(cell=>{
+       if(cell.innerText !== "" && !hasWon && countTurns === 9){
+           console.log("draw");
+           isDraw = true;
+       }
+    });
+    if(isDraw){
+        drawScore++;
+        drawScoreEl.innerText = "";
+        drawScoreEl.innerText = `${drawScore}`;
+    }
+}
+const countTotalGamesPlayer = () =>{
+    gamesPlayedEl.innerText = "";
+    gamesPlayedEl.innerText = `${gamesPlayed}`;
+}
+
+const winnerFuncHandler = (cellValue) =>{
+    if(cellValue === "X"){
+        xScore++;
+        crossScoreEl.innerText = "";
+        crossScoreEl.innerText = `${xScore}`;
+    }else{
+        oScore++;
+        circleScoreEl.innerText = "";
+        circleScoreEl.innerText = `${oScore}`;
+    }
+}
+const moveSlider = () =>{
+    slider.classList.toggle("active");
 };
-
-
-
-//remove main section on Play button click
 const removeMainSectionHandler = () =>{
     mainSection.classList.add("hide");
     switches.classList.remove("hide");
     switches.classList.add("switches");
     buildBoard();
+};
+const changePlayer = () =>{
+    currTurn = (currTurn === "X") ? "O" : "X";
 }
-
-//show tic-tac-toe cells (playground)
 const buildBoard = () =>{
     playGround.classList.remove("hide");
-}
-//for each cell remove its text content and apply respective turn Icon
-//check for winner call, moveSlider function, change turn function
-cells.forEach((el, index)=>{
-    el.innerHTML = "";
-    el.addEventListener("click",()=> userInput(el,index));
-});
-
-const userInput = (el)=>{
-    if(!isGameOver){
-        el.innerHTML = currTurn;
-        selectWinner();
-        moveSlider();
-        changeTurn();
-    }
-}
-
-
-//distinguish the winning sets within cells
-const selectWinner = () =>{
-   for(let i = 0; i < winningSets.length; i++){
-        let v0 = cells[winningSets[i][0]].innerHTML;
-        let v1 = cells[winningSets[i][1]].innerHTML;
-        let v2 = cells[winningSets[i][2]].innerHTML;
-        if(v0 !== "" && v0 === v1 && v0 === v2){
-            alert(currTurn);
+};
+const enableBtns = () =>{
+    cells.forEach(cell=>{
+        cell.disabled = false;
+        if(currTurn === "O"){
+            changePlayer();
+            moveSlider();
         }
-   }
+    })
 }
+const disableBtns = () =>{
+    cells.forEach(cell=>{
+        cell.disabled = true;
+    })
+}
+const restartGame = () =>{
+    cells.forEach(cell=>{
+        cell.innerHTML = "";
+        enableBtns();
+    });
+    gamesPlayed++;
+    countTurns = 0;
+};
 
-
-//change of turn
-const changeTurn = () =>{
-    if(currTurn === "X"){
-        currTurn = "O";
-    }else{
-        currTurn = "X";
+function setProfileName(){
+    if(sessionStorage.getItem("loggedUser")){
+        userProfile.innerHTML = JSON.parse(sessionStorage.getItem("loggedUser"));
     }
 }
-
-//moving slider function by toggling class to active
-const moveSlider = () =>{
-    slider.classList.toggle("active");
+function addScoresToLocalStorage(){
+    let updatedUser;
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let scores = {
+        crossesScore: xScore,
+        circlesScore: oScore,
+        drawsScore: drawScore,
+        totalGamesPlayed: gamesPlayed
+    };
+    users.forEach(user=>{
+        updatedUser = [{...user, ...scores}];
+    });
+    users.push(updatedUser);
+    localStorage.setItem("users", JSON.stringify(updatedUser));
+}
+const gameWinHandler = () =>{
+    if(xScore === maxScore){
+        console.log("Game has finished. Crosses Won!!!");
+        addScoresToLocalStorage();
+    }else if(oScore === maxScore){
+        console.log("Game has finished. Circles Won!!!");
+        addScoresToLocalStorage();
+    }
+}
+window.onload = function (){
+    setProfileName();
 }
 
-
+restartBtn.addEventListener("click", restartGame);
 playBtn.addEventListener("click", removeMainSectionHandler);

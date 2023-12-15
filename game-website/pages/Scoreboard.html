@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <script src="../scripts/app.js" defer></script>
+    <script src="../scripts/scoreboard.js" defer></script>
     <title>Tic Tac Toe</title>
 </head>
 <body class="page__body">
@@ -22,40 +22,21 @@
             <li><a href="../pages/Register.html">Register</a></li>
             <li><a href="../pages/Scoreboard.html">Scoreboard</a></li>
         </ul>
+        <span class="user-profile">User: <a id="user-profile">Anonymous</a></span>
     </nav>
 </header>
 <!--Scoreboard Section-->
 <main class="scoreboard-main">
     <div class="scoreboard-wrapper">
-        <table class="scoreboard-table">
+        <table class="scoreboard-table" id="scoreboard-table">
             <thead>
             <tr>
                 <th>Position</th>
                 <th>Name</th>
-                <th>Circles</th>
                 <th>Crosses</th>
+                <th>Circles</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>godOfTheGame</td>
-                <td>4</td>
-                <td>7</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>artem</td>
-                <td>8</td>
-                <td>10</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>patrick</td>
-                <td>17</td>
-                <td>9</td>
-            </tr>
-            </tbody>
         </table>
     </div>
 </main>

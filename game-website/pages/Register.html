@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <script src="../scripts/app.js" defer></script>
+    <script src="../scripts/register.js" defer ></script>
     <title>Tic Tac Toe</title>
 </head>
 <body class="page__body">
@@ -22,29 +22,44 @@
             <li><a href="../pages/Register.html">Register</a></li>
             <li><a href="../pages/Scoreboard.html">Scoreboard</a></li>
         </ul>
+        <span class="user-profile">User: <a id="user-profile">Anonymous</a></span>
     </nav>
 </header>
 <main class="login-main">
     <div class="container">
-<!--Login Section-->
+<!--Register Section-->
         <section class="login-section">
             <div class="login-wrapper">
                 <h1 class="login-title">Welcome to register page</h1>
-                <div class="input-container">
-                    <input type="email" id="user-email" placeholder="Email:"/>
-                    <label for="user-email"></label>
-                    <input type="password" id="user-password" placeholder="Password:"/>
-                    <label for="user-password"></label>
-                    <input type="password" id="user-password-repeat" placeholder="Repeat Password:"/>
-                    <label for="user-password-repeat"></label>
-                    <input type="text" id="user-name" placeholder="Username:"/>
-                    <label for="user-name"></label>
+                <div class="input-container" id="input-container">
+                    <div class="input-control">
+                        <input type="email" id="user-email" placeholder="Email:" required/>
+                        <label for="user-email"></label>
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-control">
+                        <input type="password" id="user-password" placeholder="Password:" required/>
+                        <label for="user-password"></label>
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-control">
+                        <input type="password" id="user2-password-repeat" placeholder="Repeat Password:" required/>
+                        <label for="user2-password-repeat"></label>
+                        <div class="error"></div>
+                    </div>
+                    <div class="input-control">
+                        <input type="text" id="user-name" placeholder="Username:" required/>
+                        <label for="user-name"></label>
+                        <div class="error"></div>
+                    </div>
                 </div>
-                <button class="login-btn">Login</button>
+                <span class="email-error" id="email-error-span"></span>
+                <button type="submit" class="login-btn" id="register-btn" >Register</button>
                 <img class="form-logo" src="../imgs/logo.png" alt="" width="42">
             </div>
         </section>
     </div>
 </main>
+
 </body>
 </html>
