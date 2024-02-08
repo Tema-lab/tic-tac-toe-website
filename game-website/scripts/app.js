@@ -149,31 +149,20 @@ function addScoresToLocalStorage() {
         drawsScore: drawScore,
         totalGamesPlayed: gamesPlayed
     };
+    
     let currUserId = JSON.parse(sessionStorage.getItem("loggedUserId"));
-    // Check if the current user is already in the array
     let currentUserIndex = users.findIndex(user => user.id === currUserId);
-
     if (currentUserIndex !== -1) {
-        // If the user is found, update the scores
         users[currentUserIndex] = { ...users[currentUserIndex], ...scores };
     } else {
-        // If the user is not found, add the new user to the array
         let newUser = {
-            id: currUserId, // Replace with the actual identifier for the user
+            id: currUserId,
             ...scores
         };
         users.push(newUser);
     }
     localStorage.setItem("users", JSON.stringify(users));
 }
-// const gameWinHandler = () =>{
-//     if(xScore === maxScore){
-//         addScoresToLocalStorage();
-//     }
-//     if(oScore === maxScore){
-//         addScoresToLocalStorage();
-//     }
-// }
 window.onload = function (){
     setProfileName();
 }
